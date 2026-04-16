@@ -30,7 +30,12 @@ public class CollegeMenu implements AutoCloseable {
                 scanner.nextLine(); 
                 
                 switch(menuOpt) {
+                    case 1 -> showAddLecturerMenu();
+                    case 2 -> showAddCommitteeMenu();
                     case 3 -> showAddDepartmentMenu();
+                    case 4 -> showAssignLecturerToACommittee();
+                    case 7 -> showLecturersInformation();
+                    case 8 -> showCommitteesInformation();
                     case 9 -> showMainMenu();
                     default -> menuOpt = 0;
                 }
@@ -45,7 +50,7 @@ public class CollegeMenu implements AutoCloseable {
         }
     }
 
-    public void showMainMenu() {
+    private void showMainMenu() {
         System.out.println("\n=== Management Menu - " + college.getCollegeName() + " ===");
         System.out.println("0 - Exit");
         System.out.println("1 - Add a lecturer");
@@ -60,18 +65,72 @@ public class CollegeMenu implements AutoCloseable {
         System.out.print("Choose an option: ");
     }
 
-    public void showAddDepartmentMenu() {
+    private void showAddDepartmentMenu() {
         System.out.print("Enter the name of the department you want to add (leave blank to return): ");
         String name = scanner.nextLine();
         if(!name.isBlank()) {
             if(college.addDepartment(name)) {
-                System.out.println("The department was added successfully!");
+                System.out.println("The department '%s' was added successfully!".formatted(name));
             }
             else {
-                System.out.println("The department already exists, try again!");
+                System.out.println("The department '%s' already exists, try again!".formatted(name));
                 showAddDepartmentMenu();
             }
         }
+    }
+
+    private void showAddLecturerMenu() {
+        System.out.print("Enter the name of the lecturer you want to add (leave blank to return): ");
+        String name = scanner.nextLine();
+        if(!name.isBlank()) {
+            if(college.addLecturer(name, (double)0)) {
+                System.out.println("Lecturer '%s' was added successfully!".formatted(name));
+            }
+            else {
+                System.out.println("Lecturer '%s' already exists, try again!".formatted(name));
+                showAddLecturerMenu();
+            }
+        }
+    }
+
+    private void showAddCommitteeMenu() {
+        System.out.print("Enter the name of the committee you want to add (leave blank to return): ");
+        String name = scanner.nextLine();
+        if(!name.isBlank()) {
+            if(college.addCommittee(name)) {
+                System.out.println("Committee '%s' was added successfully!".formatted(name));
+            }
+            else {
+                System.out.println("Committee '%s' already exists, try again!".formatted(name));
+                showAddCommitteeMenu();
+            }
+        }
+    }
+
+    private void showAssignLecturerToACommittee() {
+        System.out.print("Enter lecturer name (leave blank to return): ");
+        String lecturer = scanner.nextLine();
+        System.out.print("Enter committee name (leave blank to return): ");
+        String committee = scanner.nextLine();
+        if(!lecturer.isBlank() && !committee.isBlank()) {
+            if(college.assignLecturerToACommittee(lecturer, committee)) {
+                System.out.println("Lecturer '%s' was assigned to committee '%s'".formatted(lecturer, committee));
+            }
+            else {
+                System.out.println("Either '%s' is not a lecturer or the committee '%s' doesn't exists".formatted(lecturer, committee));
+                showAssignLecturerToACommittee();
+            }
+        }
+    }
+
+    private void showLecturersInformation() {
+        System.out.println("All lecturers:");
+        System.out.println(college.getAllLecturers());
+    }
+
+    private void showCommitteesInformation() {
+        System.out.println("All committees:");
+        System.out.println(college.getAllCommittees());
     }
 
     @Override

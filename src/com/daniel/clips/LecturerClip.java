@@ -1,8 +1,7 @@
 package com.daniel.clips;
 
-import java.util.Arrays;
-
 import com.daniel.models.*;
+import java.util.Arrays;
 
 public class LecturerClip {
     private static final int ALLOC_SIZE = 2;
@@ -22,7 +21,7 @@ public class LecturerClip {
 
         for (Lecturer lecturer : lecturers) {
             if(lecturer == null) continue;
-            if(lecturer.name.toLowerCase() == name.toLowerCase()) {
+            if(lecturer.name.equalsIgnoreCase(name)) {
                 return false;
             }
         }
@@ -33,7 +32,16 @@ public class LecturerClip {
         return true;
     }
 
+    public Lecturer getLecturer(String name) {
+        for(Lecturer lecturer : lecturers) {
+            if(lecturer.name.equalsIgnoreCase(name)) {
+                return lecturer;
+            }
+        }
+        return null;
+    }
+
     public Lecturer[] getLecturers() {
-        return Arrays.copyOfRange(departments, 0, pointer);
+        return Arrays.copyOfRange(lecturers, 0, pointer);
     }
 }

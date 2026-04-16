@@ -1,8 +1,7 @@
 package com.daniel.clips;
 
-import java.util.Arrays;
-
 import com.daniel.models.*;
+import java.util.Arrays;
 
 public class CommitteeClip {
     private static final int ALLOC_SIZE = 2;
@@ -22,7 +21,7 @@ public class CommitteeClip {
 
         for (Committee committee : committees) {
             if(committee == null) continue;
-            if(committee.name.toLowerCase() == name.toLowerCase()) {
+            if(committee.name.equalsIgnoreCase(name)) {
                 return false;
             }
         }
@@ -31,6 +30,15 @@ public class CommitteeClip {
         pointer++;
 
         return true;
+    }
+
+    public Committee getCommittee(String name) {
+        for(Committee committee : committees) {
+            if(committee.name.equalsIgnoreCase(name)) {
+                return committee;
+            }
+        }
+        return null;
     }
 
     public Committee[] getCommittees() {

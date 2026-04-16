@@ -1,8 +1,7 @@
 package com.daniel.clips;
 
-import java.util.Arrays;
-
 import com.daniel.models.*;
+import java.util.Arrays;
 
 public class DepartmentClip {
     private static final int ALLOC_SIZE = 2;
@@ -22,7 +21,7 @@ public class DepartmentClip {
 
         for (Department department : departments) {
             if(department == null) continue;
-            if(department.name.toLowerCase() == name.toLowerCase()) {
+            if(department.name.equalsIgnoreCase(name)) {
                 return false;
             }
         }
