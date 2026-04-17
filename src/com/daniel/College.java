@@ -6,10 +6,10 @@ import com.daniel.models.*;
 public class College {
 
     private String collegeName = "";
-    private DepartmentClip departments = new DepartmentClip();
-    private LecturerClip lecturers = new LecturerClip();
-    private CommitteeClip committees = new CommitteeClip();
-    private LecturerCommitteeClip placements = new LecturerCommitteeClip();
+    private final DepartmentClip departments = new DepartmentClip();
+    private final LecturerClip lecturers = new LecturerClip();
+    private final CommitteeClip committees = new CommitteeClip();
+    private final LecturerCommitteeClip placements = new LecturerCommitteeClip();
 
     public String getCollegeName() {
         return collegeName;
@@ -40,8 +40,8 @@ public class College {
     public String getAllDepartments() {
         StringBuilder builder = new StringBuilder();
         for (Department department : departments.getDepartments()) {
-            builder.append(department.name);
-            builder.append('\n');
+            if(department != null)
+                builder.append("%s\n".formatted(department.name));
         }
         return builder.toString();
         
@@ -50,8 +50,8 @@ public class College {
     public String getAllCommittees() {
         StringBuilder builder = new StringBuilder();
         for (Committee committee : committees.getCommittees()) {
-            builder.append(committee.name);
-            builder.append('\n');
+            if(committee != null)
+                builder.append("%s\n".formatted(committee.name));
         }
         return builder.toString();
         
@@ -60,8 +60,8 @@ public class College {
     public String getAllLecturers() {
         StringBuilder builder = new StringBuilder();
         for (Lecturer lecturer : lecturers.getLecturers()) {
-            builder.append(lecturer.name);
-            builder.append('\n');
+            if(lecturer != null)
+                builder.append("%s\n".formatted(lecturer.name));
         }
         return builder.toString();
         

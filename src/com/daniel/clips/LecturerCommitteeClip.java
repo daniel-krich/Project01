@@ -1,7 +1,6 @@
 package com.daniel.clips;
 
 import com.daniel.models.*;
-import com.daniel.utils.ArrayHelper;
 import java.util.Arrays;
 
 public class LecturerCommitteeClip {
@@ -12,7 +11,7 @@ public class LecturerCommitteeClip {
 
     public Boolean addLecturerCommittee(Lecturer lecturer, Committee committee) {
         if(pointer >= clipSize - 1) {
-            placements = (LecturerCommittee[])ArrayHelper.resizeArray(placements, clipSize*2);
+            placements = Arrays.copyOf(placements, clipSize*2);
             clipSize = clipSize * 2;
         }
 
@@ -32,6 +31,6 @@ public class LecturerCommitteeClip {
     }
 
     public LecturerCommittee[] getLecturerCommittees() {
-        return Arrays.copyOfRange(placements, 0, pointer);
+        return Arrays.copyOf(placements, pointer+1);
     }
 }

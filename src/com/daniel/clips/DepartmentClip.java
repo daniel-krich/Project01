@@ -1,7 +1,6 @@
 package com.daniel.clips;
 
 import com.daniel.models.*;
-import com.daniel.utils.ArrayHelper;
 import java.util.Arrays;
 
 public class DepartmentClip {
@@ -12,7 +11,7 @@ public class DepartmentClip {
 
     public Boolean addDepartment(String name) {
         if(pointer >= clipSize - 1) {
-            departments = (Department[])ArrayHelper.resizeArray(departments, clipSize*2);
+            departments = Arrays.copyOf(departments, clipSize*2);
             clipSize = clipSize * 2;
         }
 
@@ -30,6 +29,6 @@ public class DepartmentClip {
     }
 
     public Department[] getDepartments() {
-        return Arrays.copyOfRange(departments, 0, pointer);
+        return Arrays.copyOf(departments, pointer+1);
     }
 }

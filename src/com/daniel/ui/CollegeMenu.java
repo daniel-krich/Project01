@@ -46,7 +46,9 @@ public class CollegeMenu implements AutoCloseable {
                 else if(menuOpt != 9){
                     System.out.print("Choose an option: ");
                 }
-            } catch (Exception e) { }
+            } catch (Exception e) { 
+                System.out.println(e);
+            }
         }
     }
 

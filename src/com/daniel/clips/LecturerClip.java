@@ -1,7 +1,6 @@
 package com.daniel.clips;
 
 import com.daniel.models.*;
-import com.daniel.utils.ArrayHelper;
 import java.util.Arrays;
 
 public class LecturerClip {
@@ -12,7 +11,7 @@ public class LecturerClip {
 
     public Boolean addLecturer(String name, double salary) {
         if(pointer >= clipSize - 1) {
-            lecturers = (Lecturer[])ArrayHelper.resizeArray(lecturers, clipSize*2);
+            lecturers = Arrays.copyOf(lecturers, clipSize*2);
             clipSize = clipSize * 2;
         }
 
@@ -31,6 +30,7 @@ public class LecturerClip {
 
     public Lecturer getLecturer(String name) {
         for(Lecturer lecturer : lecturers) {
+            if(lecturer == null) continue;
             if(lecturer.name.equalsIgnoreCase(name)) {
                 return lecturer;
             }
@@ -39,6 +39,6 @@ public class LecturerClip {
     }
 
     public Lecturer[] getLecturers() {
-        return Arrays.copyOfRange(lecturers, 0, pointer);
+        return Arrays.copyOf(lecturers, pointer+1);
     }
 }
