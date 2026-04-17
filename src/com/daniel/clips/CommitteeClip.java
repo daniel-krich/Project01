@@ -1,6 +1,7 @@
 package com.daniel.clips;
 
 import com.daniel.models.*;
+import com.daniel.utils.ArrayHelper;
 import java.util.Arrays;
 
 public class CommitteeClip {
@@ -11,11 +12,7 @@ public class CommitteeClip {
 
     public Boolean addCommitee(String name) {
         if(pointer >= clipSize - 1) {
-            Committee[] newClip = new Committee[clipSize * 2];
-            for(int i = 0; i < clipSize; i++) {
-                newClip[i] = committees[i];
-            }
-            committees = newClip;
+            committees = (Committee[])ArrayHelper.resizeArray(committees, clipSize*2);
             clipSize = clipSize * 2;
         }
 

@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class CollegeMenu implements AutoCloseable {
     
-    public Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
 
     private final College college;
 

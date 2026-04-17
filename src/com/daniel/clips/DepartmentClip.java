@@ -1,6 +1,7 @@
 package com.daniel.clips;
 
 import com.daniel.models.*;
+import com.daniel.utils.ArrayHelper;
 import java.util.Arrays;
 
 public class DepartmentClip {
@@ -11,11 +12,7 @@ public class DepartmentClip {
 
     public Boolean addDepartment(String name) {
         if(pointer >= clipSize - 1) {
-            Department[] newClip = new Department[clipSize * 2];
-            for(int i = 0; i < clipSize; i++) {
-                newClip[i] = departments[i];
-            }
-            departments = newClip;
+            departments = (Department[])ArrayHelper.resizeArray(departments, clipSize*2);
             clipSize = clipSize * 2;
         }
 

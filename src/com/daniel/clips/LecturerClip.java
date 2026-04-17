@@ -1,6 +1,7 @@
 package com.daniel.clips;
 
 import com.daniel.models.*;
+import com.daniel.utils.ArrayHelper;
 import java.util.Arrays;
 
 public class LecturerClip {
@@ -11,11 +12,7 @@ public class LecturerClip {
 
     public Boolean addLecturer(String name, double salary) {
         if(pointer >= clipSize - 1) {
-            Lecturer[] newClip = new Lecturer[clipSize * 2];
-            for(int i = 0; i < clipSize; i++) {
-                newClip[i] = lecturers[i];
-            }
-            lecturers = newClip;
+            lecturers = (Lecturer[])ArrayHelper.resizeArray(lecturers, clipSize*2);
             clipSize = clipSize * 2;
         }
 
