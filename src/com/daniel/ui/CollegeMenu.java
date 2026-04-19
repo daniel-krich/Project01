@@ -26,8 +26,7 @@ public class CollegeMenu implements AutoCloseable {
         int menuOpt = -1;
         while(menuOpt != 0) {
             try {
-                menuOpt = scanner.nextInt();
-                scanner.nextLine(); 
+                menuOpt = Integer.parseInt(scanner.nextLine());
                 
                 switch(menuOpt) {
                     case 1 -> showAddLecturerMenu();
